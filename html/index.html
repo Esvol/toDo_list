@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <title>toDolse</title>
+</head>
+<body id="body">
+    <header class="header">
+        <nav>
+            <ul>
+                <li><a href="/html/index.html">План на день</a> <div></div> </li>
+                <li><a href="/html/notatku.html">Нотатки</a> <div></div> </li>
+                <li><a href="#">Архів</a> <div></div> </li>
+                <li><a href="#">Прогрес</a> <div></div> </li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="sect1">
+        <form class="f1" name="f1">
+            <input type="text" class="inputExercize" required="required">
+            <label class="f1_label">toDolse</label>
+        </form>
+        <form class="f2" name="f2">
+            <input type="text" class="inputStartTime" maxlength="5" placeholder="00:00" required="required">
+            <label>Start</label>
+            <input type="text" class="inputEndTime" maxlength="5" placeholder="00:00" required="required">
+            <label>End</label>
+        </form>
+        <button class="buttonConfirm">Confirm</button>
+    </section>
+
+    <section class="sect2">
+        <!-- <div class="taskContainer">
+            <div class="taskHead">
+                <div class="checkBoxer"></div>
+                <div class="taskinfo">asdsadasdasdsadsad</div>
+                <div class="startTaskTime">16:35</div>
+                <div class="ruska">-</div>
+                <div class="endTaskTime" >16:55</div>
+                <button class="editButton" id="0">Edit</button>
+                <button class="deleteButton" id="0">Delete</button>
+            </div>
+            <div class="addCondition" required="required"></div>
+        </div> -->
+    </section>
+    
+    <div class="resultChecker">0%</div>
+    <div class="deleteAll">Delete All</div>
+    
+    <script src="/js/sortable.js"></script>
+    <script src="/js/index.js"></script>
+</body>
+</html>

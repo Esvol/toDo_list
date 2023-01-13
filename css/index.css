@@ -1,0 +1,520 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&family=Poppins:wght@500&display=swap');
+
+
+*,
+*::before, 
+*:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald';
+}
+
+body{
+    width: 99vw;
+    height: 95vh;
+    background-color: #434750;
+}
+
+/* --------------------------- Главное меню ------------------------------------ */
+
+nav{
+    margin: auto;
+    height: 40px;
+    width: 1000px;
+    margin-top: 30px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 1000px;
+    transition: 0.5s;
+}
+
+ul li{
+    position: relative;
+    list-style: none;
+    width: 200px;
+    background-color: #3e3f46;
+    padding: 15px;
+    transition: 0.5s;
+}
+
+ul li::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 20px;
+    height: 100%;
+    transform-origin: right;
+    background-color: #494a52;
+    transform: skewY(45deg);
+    transition: 0.5s;
+}
+
+ul li::after{
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    transform-origin: bottom;
+    background-color: #38393f;
+    transform: skewX(45deg);
+    transition: 0.5s;
+}
+
+ul li:hover{
+    background-color: #33a3ee;
+}
+
+ul li:hover::before{
+    background-color: #1f5378;
+}
+
+ul li:hover::after{
+    background-color: #2982b9;
+}
+
+ul li a{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #999;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+ul li:hover a{
+    color: #fff;
+}
+
+ul li div{
+    position: absolute;
+    transform-origin: bottom;
+    transform: skewX(45deg);
+    bottom: 30px;
+    right: 50px;
+    width: 0;
+    height: 0;
+    transition: 0.3s;
+}
+
+ul li:hover div{
+    box-shadow: 0px 0px 5px 3px rgb(60, 139, 131); 
+    width: 100%;
+    height: 20px;
+    right: 0;
+    bottom: 80px;
+}
+
+/* --------------------------- Запис завдань ------------------------------------ */
+
+.sect1{
+    margin: auto;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 1000px;
+}
+
+.f1{
+    width: 470px;
+    position: relative;
+    transition: 0.3s;
+}
+
+.inputExercize{
+    width: 470px;
+    height: 50px;
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    background-color: #445262;
+    color: #fff;
+    border-radius: 5px;
+    padding-left: 10px;
+    font-size: 17px;
+    transition: 0.5s;
+    letter-spacing: 0.05em;
+}
+
+.f1_label{
+    position: absolute;
+    pointer-events: none;
+    text-align: center;
+    color: rgba(255,255,255,0.25);
+    top: 3px;
+    left: 13px;
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.f1 input:hover ~ label{
+    color: #7fe1d5;
+}
+
+.f1 input:focus{
+    border: 1px solid #00dfc4;
+}
+
+.f1 input:valid ~ label,
+.f1 input:focus ~ label
+{
+    color: #00dfc4;
+    transform: translateX(185px) translateY(-16px);
+    background-color: #434750;
+    font-size: 15px;
+    padding: 0px 5px;
+    border: 1px solid #00dfc4;
+    letter-spacing: 0.2em;
+}
+
+.f2{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    font-size: 20px;
+    transition: 0.5s;
+}
+
+.inputStartTime, .inputEndTime{
+    width: 70px;
+    height: 50px;
+    outline: none;
+    border: 1px solid rgba(255,255,255,0.25);
+    background-color: #445262;
+    color: #fff;
+    border-radius: 5px;
+    padding-left: 15px;
+    font-size: 17px;
+    transition: 0.5s;
+    letter-spacing: 0.05em;
+}
+
+.inputStartTime:hover,
+.inputStartTime:focus, 
+.inputEndTime:hover,
+.inputEndTime:focus{
+    border: 1px solid #00dfc4;
+}
+
+.inputStartTime::placeholder{
+    position: absolute;
+    transform: translateX(-4px) translateY(9px);
+    font-size: 20px;
+    color: rgb(0, 0, 0, 0.7);
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.inputEndTime::placeholder{
+    position: absolute;
+    transform: translateX(-4px) translateY(9px);
+    font-size: 20px;
+    color: rgb(0, 0, 0, 0.7);
+    opacity: 1;
+    transition: 0.3s;
+}
+
+.inputStartTime:hover::placeholder,
+.inputStartTime:focus::placeholder,
+.inputEndTime:hover::placeholder,
+.inputEndTime:focus::placeholder{
+    opacity: 0;
+    color: #fff;
+}
+
+.f2 label:nth-child(2){
+    position: absolute;
+    transform: translateX(-48px) translateY(-25px);
+    font-size: 13px;
+    pointer-events: none;
+    padding: 0px 3px;
+    letter-spacing: 0.2em;
+    color: #00dfc4;
+    background-color: #434750;
+}
+
+.f2 label:nth-child(4){
+    position: absolute;
+    transform: translateX(52px) translateY(-25px);
+    font-size: 13px;
+    pointer-events: none;
+    padding: 0px 3px;
+    letter-spacing: 0.2em;
+    color: #00dfc4;
+    background-color: #434750;
+}
+
+.buttonConfirm{
+    position: relative;
+    width: 100px;
+    height: 50px;
+    border-radius: 5px;
+    text-align: center;
+    letter-spacing: 0.2em;
+    color: black;
+    text-transform: uppercase;
+    background-color: #445262;
+    border: 0.5px solid black;
+    transition: 0.3s;
+}
+
+.buttonConfirm:hover{
+    border: 0.5px solid rgb(130, 130, 130);
+    color: #fff;
+    background-color: #3b4755;
+}
+
+.buttonConfirm:active{
+    border: 0.5px solid rgb(91, 91, 91);
+    color: rgb(216, 216, 216);
+    background-color: #29313b;
+}
+
+/* --------------------------- Завдання ------------------------------------ */
+
+.sect2{
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 7px;
+    min-height: 150px;
+    width: 1360px;
+}
+
+.taskContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 1360px;
+    min-height: 50px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: 0.5s all;
+}
+
+.taskHead{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    min-height: 50px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #abf8e7,#8778c7);
+}
+
+.checkBoxer{
+    height: 30px;
+    width: 30px;
+    border-radius: 15%;
+    border: 1px solid black;
+}
+
+.checkBoxer_checked{
+    background-color: #00dfc4;
+    background-image: url('/img/check.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.taskinfo{
+    font-size: 17px;
+    width: 700px;
+    padding: 15px 0;
+    word-break: break-all;
+    text-align: start;
+    border-radius: 7px;
+}
+
+.taskinfo_checked{
+    color: rgb(0, 0, 0, 0.7);
+    text-decoration: line-through;
+}
+
+.startTaskTime, .endTaskTime{
+    width: 90px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 21px;
+    border-radius: 5px;
+    color: rgb(216, 211, 189);
+    border: 1px solid floralwhite;
+    background-color: #3b4c63;
+}
+
+.ruska{
+    height: 50px;
+    width: 10px;
+    display: flex;
+    justify-content: center;
+    font-size: 30px;
+    color: white;
+}
+
+.editButton, .deleteButton{
+    cursor: pointer;
+    width: 120px;
+    height: 35px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 17px;
+    text-transform: uppercase;
+    border: 1px solid black;
+    transition: 0.1s all;
+}
+
+.editButton{
+    color: #5724ce;
+    background-color: #73a0d3;
+}
+
+.editButton:hover{
+    color: #4d20b8;
+    background-color: #6890bf;
+}
+
+.editButton:active{
+    color: #7e48fb;
+    background-color: #5f85b0;
+}
+
+.deleteButton{
+    color: #ffdbdb;
+    background-color: #fe5353;
+}
+
+.deleteButton:hover{
+    color: #ffe5e5;
+    background-color: #ef4646;
+}
+
+.deleteButton:active{
+    color: #e9dede;
+    background-color: #bb3b3b;
+}
+
+.addCondition{
+    overflow: hidden;
+    visibility: hidden;
+    display: block;
+    padding-left: 0;
+    width: 0;
+    min-height: 0;
+    font-size: 0;
+    outline: 0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    color: rgb(215, 215, 215);
+    border: 1px solid rgba(244, 244, 244, 0.869);
+    transition: 0.5s all;
+}
+
+.toggleAdd{
+    visibility: visible !important;
+    width: 99%;
+    min-height: 25px;
+    padding-left: 15px;
+    font-size: 15px;
+}
+
+.addCondition:hover{
+    color: black;
+    background-color: rgb(142, 158, 167);
+}
+
+.addCondition:focus{
+    color: black;
+    background-color: rgb(169, 189, 201);
+}
+
+.hidee{
+    opacity: 0;
+}
+
+/* --------------------------- Інші штуки ------------------------------------ */
+
+.resultChecker{
+    position: fixed;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #2982b9;
+    bottom: 30px;
+    right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: rgb(255, 255, 255, 0.7);
+    overflow: hidden;
+}
+
+.resultChecker::after{
+    content: '';
+    position: absolute;
+    height: 70px;
+    width: 70px;
+    border: 3px solid #45bc63;
+}
+
+.resultChecker::before{
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    height: 66px;
+    width: 70px;
+    background-color: #45bc63;
+    z-index: -1;
+}
+
+.deleteAll{
+    position: fixed;
+    width: 80px;
+    height: 40px;
+    border-radius: 7px;
+    bottom: 130px;
+    right: 30px;
+    font-size: 15px;
+    text-transform: uppercase;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #c12d2a;
+    border: 1px solid black;
+    user-select: none;
+    transition: 0.1s all;      
+}
+
+.deleteAll:hover{
+    color: #1f0000;
+    background-color: #e22a26;
+    border: 1px solid rgb(93, 93, 93);
+}
+
+.deleteAll:active{
+    color: #ff5a5a;
+    background-color: #e22a26;
+    border: 1px solid rgb(0, 0, 0);
+}

@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;300&family=Poppins:wght@500&display=swap');
+
+
+*,
+*::before, 
+*:after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Oswald';
+}
+
+body{
+    width: 99vw;
+    height: 95vh;
+    background-color: #434750;
+}
+
+/* --------------------------- Главное меню ------------------------------------ */
+
+nav{
+    margin: auto;
+    height: 40px;
+    width: 1000px;
+    margin-top: 30px;
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+ul{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 1000px;
+    transition: 0.5s;
+}
+
+ul li{
+    position: relative;
+    list-style: none;
+    width: 200px;
+    background-color: #3e3f46;
+    padding: 15px;
+    transition: 0.5s;
+}
+
+ul li::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -20px;
+    width: 20px;
+    height: 100%;
+    transform-origin: right;
+    background-color: #494a52;
+    transform: skewY(45deg);
+    transition: 0.5s;
+}
+
+ul li::after{
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    transform-origin: bottom;
+    background-color: #38393f;
+    transform: skewX(45deg);
+    transition: 0.5s;
+}
+
+ul li:hover{
+    background-color: #33a3ee;
+}
+
+ul li:hover::before{
+    background-color: #1f5378;
+}
+
+ul li:hover::after{
+    background-color: #2982b9;
+}
+
+ul li a{
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: #999;
+    text-transform: uppercase;
+    display: block;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+
+ul li:hover a{
+    color: #fff;
+}
+
+ul li div{
+    position: absolute;
+    transform-origin: bottom;
+    transform: skewX(45deg);
+    bottom: 30px;
+    right: 50px;
+    width: 0;
+    height: 0;
+    transition: 0.3s;
+}
+
+ul li:hover div{
+    box-shadow: 0px 0px 5px 3px rgb(60, 139, 131); 
+    width: 100%;
+    height: 20px;
+    right: 0;
+    bottom: 80px;
+}
+
+/* --------------------------- Кнопочки додавання ------------------------------------ */
+
+.sect1{
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.addButton{
+    width: 160px;
+    height: 40px;
+    background-color: #445262;
+    border-radius: 3px;
+    border: 1px solid #1c1f24;
+    color: #1c1f24;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.addButton:hover{
+    background-color: #3f5671;
+    border: 1px solid #171c23;
+    color: #171c23;
+}
+
+.addButton:active{
+    background-color: #2a394b;
+    border: 1px solid #c0c0c0;
+    color: #c0c0c0;
+}
+
+/* --------------------------- Нотатки ------------------------------------ */
+
+.screen{
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 0%;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.sect2{
+    min-width: 0%;
+    max-width: 90%;
+    min-height: 0px;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.noteContainer{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 800px;
+    width: 800px;
+    border-radius: 10px;
+    background-color: #f7f1f1;
+}
+
+.noteHead{
+    padding-left: 3px;
+    width: 100%;
+    height: 7%;
+    border: 1px solid bisque;
+    background-color: #f7f6f6;
+    border-radius: 5px;
+    font-size: 30px;
+    font-weight: 700;
+    outline: 0px;
+}
+
+.noteText{
+    padding-top: 5px;
+    padding-left: 5px;
+    width: 100%;
+    height: 93%;
+    overflow: hidden;
+    border-radius: 5px;
+    outline: 0px;
+    border: 1px solid bisque;
+    background-color: #f7f6f6;
+}  
+
+.exit{
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 35px;
+    width: 35px;
+    border-bottom-left-radius: 5px;
+    border: 1px solid black;
+    background-image: url('/img/close.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.noteContainerDisable{
+    opacity: 1;
+    position: relative;
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 200px;
+    height: 300px;
+    background-color: #202317;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.5s;
+} 
+
+.noteHeadDisable{
+    overflow: hidden;
+    width: 100%;
+    height: 10%;
+    background-color: #f7f6f6;
+    border: 0;
+    border-bottom: 1px solid black;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    text-align: center;
+    padding-left: 3px;
+    font-size: 18px;
+    font-weight: 700;
+    /* disable*/
+}
+
+.noteTextDisable{
+    word-wrap: break-word;
+    overflow: hidden;
+    width: 100%;
+    height: 90%;
+    background-color: #f7f6f6;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding-left: 3px;
+    font-size: 14px;
+    color: rgb(0, 0, 0, 0.8);
+    /* contenteditable="false"*/
+}
+
+.deleteNote{
+    float: left;
+    cursor: pointer;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    background-color: rgb(222, 41, 41);
+    color: rgb(231, 229, 229);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    transition: 0.5s all;
+    z-index: 15;
+}
+
+.deleteNote:hover{
+    background-color: rgb(171, 33, 33);
+    color: rgb(175, 175, 175);
+}
+
+.deleteNote:active{
+    background-color: rgb(168, 17, 17);
+    color: rgb(244, 244, 244);
+}
