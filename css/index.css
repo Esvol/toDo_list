@@ -501,6 +501,7 @@ ul li:hover div{
     display: none;
     justify-content: center;
     align-items: center;
+    color: #d0c3c3;
     background-color: #c12d2a;
     border: 1px solid black;
     user-select: none;

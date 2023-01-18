@@ -127,7 +127,7 @@ ul li:hover div{
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .addButton{
@@ -162,11 +162,14 @@ ul li:hover div{
 .screen{
     overflow: hidden;
     position: absolute;
-    top: 0;
-    left: 0;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
     width: 0%;
     height: 0%;
+    opacity: 0;
     background-color: rgba(0, 0, 0, 0.3);
+    transition: 0.4s opacity, 0.235s width, 0.235s height;
 }
 
 .sect2{
@@ -184,10 +187,11 @@ ul li:hover div{
     transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
-    height: 800px;
-    width: 800px;
+    height: 0;
+    width: 0;
     border-radius: 10px;
     background-color: #f7f1f1;
+    transition: 0.33s all;
 }
 
 .noteHead{
@@ -210,8 +214,10 @@ ul li:hover div{
     overflow: hidden;
     border-radius: 5px;
     outline: 0px;
+    font-size: 19px;
     border: 1px solid bisque;
     background-color: #f7f6f6;
+    resize: none;
 }  
 
 .exit{
@@ -230,6 +236,8 @@ ul li:hover div{
 }
 
 .noteContainerDisable{
+    display: flex;
+    flex-direction: column;
     opacity: 1;
     position: relative;
     margin-left: 10px;
@@ -242,11 +250,25 @@ ul li:hover div{
     transition: 0.5s;
 } 
 
+.important{
+    display: none;
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 50%;
+    top: -5px;
+    right: -5px;
+    transition: 0.3s;
+    
+}
+
 .noteHeadDisable{
     overflow: hidden;
     width: 100%;
     height: 10%;
-    background-color: #f7f6f6;
+    background-color: #e6e6e6;
     border: 0;
     border-bottom: 1px solid black;
     border-top-left-radius: 5px;
@@ -259,6 +281,7 @@ ul li:hover div{
 }
 
 .noteTextDisable{
+    cursor: pointer;
     word-wrap: break-word;
     overflow: hidden;
     width: 100%;
@@ -268,6 +291,8 @@ ul li:hover div{
     border-bottom-right-radius: 5px;
     padding-left: 3px;
     font-size: 14px;
+    outline: 0;
+    resize: none;
     color: rgb(0, 0, 0, 0.8);
     /* contenteditable="false"*/
 }
@@ -297,4 +322,104 @@ ul li:hover div{
 .deleteNote:active{
     background-color: rgb(168, 17, 17);
     color: rgb(244, 244, 244);
+}
+
+/* --------- Delete All button + Select button -------- */
+
+.f1{
+    opacity: 0;
+    margin: auto;
+    width: 400px;
+    height: 40px;
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.colors{
+    width: 55%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.f1 .colors div{
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.f1 .colors div:nth-child(1){
+    background-color: white;
+}
+
+.f1 .colors div:nth-child(2){
+    background-color: rgb(230, 222, 68);
+}
+
+.f1 .colors div:nth-child(3){
+    background-color: rgb(128, 218, 80);
+}
+
+.f1 .colors div:nth-child(4){
+    background-color: rgb(218, 80, 80);
+}
+
+.resetAllcolor{
+    user-select: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+    color: rgb(220, 220, 220);
+    border-radius: 5px;
+    width: 40%;
+    height: 90%;
+    border: 1px solid black;
+    background-color: rgb(50, 81, 172);
+}
+
+.resetAllcolor:hover{
+    color: rgb(243, 243, 243);
+    border: 1px solid black;
+    background-color: rgb(38, 59, 120);
+}
+
+.deleteAll{
+    position: fixed;
+    width: 90px;
+    height: 40px;
+    border-radius: 7px;
+    bottom: 30px;
+    right: 30px;
+    font-size: 15px;
+    text-transform: uppercase;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: #c12d2a;
+    border: 1px solid black;
+    color: #d0c3c3;
+    user-select: none;
+    transition: 0.1s all;      
+}
+
+.deleteAll:hover{
+    color: #1f0000;
+    background-color: #e22a26;
+    border: 1px solid rgb(93, 93, 93);
+}
+
+.deleteAll:active{
+    color: #ff5a5a;
+    background-color: #e22a26;
+    border: 1px solid rgb(0, 0, 0);
 }

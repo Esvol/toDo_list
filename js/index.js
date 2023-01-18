@@ -12,9 +12,10 @@ let f1_label = document.querySelector('.f1_label');
 let f2 = document.forms['f2'];
 
 let indexEdit = 0;
+let indexEditPosition = 0;
 let keyPress;
 let index = 0;
-let tasks = [{}];
+let tasks = [];
 
 mainBody.addEventListener('click', bodyTouch)
 inputStartTime.addEventListener('keydown', keyCheck)
@@ -131,9 +132,27 @@ function clickButton(){
         }
         else if (document.getElementById(`s${indexEdit}`).innerHTML != '' && document.getElementById(`e${indexEdit}`).innerHTML != '' ) 
         {
+
+            for (let i=0; i<tasks.length; i++)
+            {
+                if (tasks[i].name == document.getElementById(`t${indexEdit}`).innerHTML && tasks[i].startTime == document.getElementById(`s${indexEdit}`).innerHTML && tasks[i].endTime == document.getElementById(`e${indexEdit}`).innerHTM)
+                {
+                    indexEditPosition = i;
+                    break;
+                }
+            }
+
             document.getElementById(`t${indexEdit}`).innerHTML = inputExercize.value;
             document.getElementById(`s${indexEdit}`).innerHTML = inputStartTime.value;
             document.getElementById(`e${indexEdit}`).innerHTML = inputEndTime.value;
+
+            tasks[indexEditPosition].name = `${inputExercize.value}`;
+            tasks[indexEditPosition].startTime = `${inputStartTime.value}`;
+            tasks[indexEditPosition].endTime = `${inputEndTime.value}`;
+
+            localStorage.removeItem(`${indexEditPosition}`);
+            localStorage.setItem(`${indexEditPosition}`, JSON.stringify(tasks[indexEditPosition]));
+
             inputStartTime.value = '';
             inputEndTime.value = '';
             inputExercize.value = '';
@@ -252,7 +271,12 @@ function deleteEl(e){
     }
 
     index--;
-    localStorage.clear();
+
+    let len = localStorage.length;
+    for(let i=0; i<len; i++)
+    {
+        localStorage.removeItem(`${i}`);
+    }
 
     for(let i=0; i<tasks.length; i++){
         localStorage.setItem(`${i}`, JSON.stringify(tasks[i]));
@@ -288,7 +312,12 @@ function deleteButton(){
         behavior: 'smooth'
     })
 
-    localStorage.clear();
+    let len = localStorage.length;
+    for(let i=0; i<len; i++)
+    {
+        localStorage.removeItem(`${i}`);
+    }
+    
     index = 0;
     tasks.length = 0;
     deleteAllButton();
@@ -302,7 +331,6 @@ function commentAdd(e){
             tasks[i]['comment'] = e.target.innerHTML;
             localStorage.removeItem(`${i}`);
             localStorage.setItem(`${i}`, JSON.stringify(tasks[i]));
-            console.log(tasks[i]['comment']);
         }
     }
 }
@@ -357,88 +385,91 @@ new Sortable(sect2, {
 function localSt(){
     for (let i=0; i<localStorage.length; i++)
     {
-        let info = localStorage.getItem(`${[i]}`);
-        info = JSON.parse(info);
-
-        if (info.check == 'true' || info.check == true)
+        if (/^\d{1,}$/.test(localStorage.key(i)))
         {
-            if (info.startTime == '' && info.endTime == '')
+            let info = localStorage.getItem(`${localStorage.key(i)}`)
+            info = JSON.parse(info);
+
+            if (info.check == 'true' || info.check == true)
             {
+                if (info.startTime == '' && info.endTime == '')
+                {
+                    sect2.innerHTML += `
+                    <div class="taskContainer">
+                        <div class="taskHead">
+                            <div class="checkBoxer checkBoxer_checked"></div>
+                            <div class="taskinfo taskinfo_checked" id="t${index}">${info.name}</div>
+                            <div class="startTaskTime hidee" id="s${index}">${info.startTime}</div>
+                            <div class="ruska hidee">-</div>
+                            <div class="endTaskTime hidee" id="e${index}">${info.endTime}</div>
+                            <button class="editButton" id="${index}">Edit</button>
+                            <button class="deleteButton" id="${index}">Delete</button>
+                        </div>
+                        <div class="addCondition" required="required">${info.comment}</div>
+                    </div>`
+                }
+                else {
+                    sect2.innerHTML += `
+                    <div class="taskContainer">
+                        <div class="taskHead">
+                            <div class="checkBoxer checkBoxer_checked"></div>
+                            <div class="taskinfo taskinfo_checked" id="t${index}">${info.name}</div>
+                            <div class="startTaskTime" id="s${index}">${info.startTime}</div>
+                            <div class="ruska">-</div>
+                            <div class="endTaskTime" id="e${index}">${info.endTime}</div>
+                            <button class="editButton" id="${index}">Edit</button>
+                            <button class="deleteButton" id="${index}">Delete</button>
+                        </div>
+                        <div class="addCondition" required="required">${info.comment}</div>
+                    </div>`
+                }
+            }
+            else if (info.check == 'false' || info.check == false){
+                if (info.startTime == '' && info.endTime == '')
+                {
                 sect2.innerHTML += `
-                <div class="taskContainer">
-                    <div class="taskHead">
-                        <div class="checkBoxer checkBoxer_checked"></div>
-                        <div class="taskinfo taskinfo_checked" id="t${index}">${info.name}</div>
-                        <div class="startTaskTime hidee" id="s${index}">${info.startTime}</div>
-                        <div class="ruska hidee">-</div>
-                        <div class="endTaskTime hidee" id="e${index}">${info.endTime}</div>
-                        <button class="editButton" id="${index}">Edit</button>
-                        <button class="deleteButton" id="${index}">Delete</button>
-                    </div>
-                    <div class="addCondition" required="required">${info.comment}</div>
-                </div>`
+                    <div class="taskContainer">
+                        <div class="taskHead">
+                            <div class="checkBoxer"></div>
+                            <div class="taskinfo" id="t${index}">${info.name}</div>
+                            <div class="startTaskTime hidee" id="s${index}">${info.startTime}</div>
+                            <div class="ruska hidee">-</div>
+                            <div class="endTaskTime hidee" id="e${index}">${info.endTime}</div>
+                            <button class="editButton" id="${index}">Edit</button>
+                            <button class="deleteButton" id="${index}">Delete</button>
+                        </div>
+                        <div class="addCondition" required="required">${info.comment}</div>
+                    </div>`
+                }
+                else{
+                    sect2.innerHTML += `
+                    <div class="taskContainer">
+                        <div class="taskHead">
+                            <div class="checkBoxer"></div>
+                            <div class="taskinfo" id="t${index}">${info.name}</div>
+                            <div class="startTaskTime" id="s${index}">${info.startTime}</div>
+                            <div class="ruska">-</div>
+                            <div class="endTaskTime" id="e${index}">${info.endTime}</div>
+                            <button class="editButton" id="${index}">Edit</button>
+                            <button class="deleteButton" id="${index}">Delete</button>
+                        </div>
+                        <div class="addCondition" required="required">${info.comment}</div>
+                    </div>`
+                }
             }
-            else {
-                sect2.innerHTML += `
-                <div class="taskContainer">
-                    <div class="taskHead">
-                        <div class="checkBoxer checkBoxer_checked"></div>
-                        <div class="taskinfo taskinfo_checked" id="t${index}">${info.name}</div>
-                        <div class="startTaskTime" id="s${index}">${info.startTime}</div>
-                        <div class="ruska">-</div>
-                        <div class="endTaskTime" id="e${index}">${info.endTime}</div>
-                        <button class="editButton" id="${index}">Edit</button>
-                        <button class="deleteButton" id="${index}">Delete</button>
-                    </div>
-                    <div class="addCondition" required="required">${info.comment}</div>
-                </div>`
+            
+            tasks[index] = {
+                name: `${info.name}`,
+                startTime: `${info.startTime}`,
+                endTime: `${info.endTime}`,
+                comment: `${info.comment}`,
+                check: `${info.check}`
             }
+            index++;
         }
-        else if (info.check == 'false' || info.check == false){
-            if (info.startTime == '' && info.endTime == '')
-            {
-            sect2.innerHTML += `
-                <div class="taskContainer">
-                    <div class="taskHead">
-                        <div class="checkBoxer"></div>
-                        <div class="taskinfo" id="t${index}">${info.name}</div>
-                        <div class="startTaskTime hidee" id="s${index}">${info.startTime}</div>
-                        <div class="ruska hidee">-</div>
-                        <div class="endTaskTime hidee" id="e${index}">${info.endTime}</div>
-                        <button class="editButton" id="${index}">Edit</button>
-                        <button class="deleteButton" id="${index}">Delete</button>
-                    </div>
-                    <div class="addCondition" required="required">${info.comment}</div>
-                </div>`
-            }
-            else{
-                sect2.innerHTML += `
-                <div class="taskContainer">
-                    <div class="taskHead">
-                        <div class="checkBoxer"></div>
-                        <div class="taskinfo" id="t${index}">${info.name}</div>
-                        <div class="startTaskTime" id="s${index}">${info.startTime}</div>
-                        <div class="ruska">-</div>
-                        <div class="endTaskTime" id="e${index}">${info.endTime}</div>
-                        <button class="editButton" id="${index}">Edit</button>
-                        <button class="deleteButton" id="${index}">Delete</button>
-                    </div>
-                    <div class="addCondition" required="required">${info.comment}</div>
-                </div>`
-            }
-        }
-        
-        tasks[index] = {
-            name: `${info.name}`,
-            startTime: `${info.startTime}`,
-            endTime: `${info.endTime}`,
-            comment: `${info.comment}`,
-            check: `${info.check}`
-        }
-        index++;
+        resultChecker();
+        deleteAllButton();
     }
-    resultChecker();
-    deleteAllButton();
 }
 
 
